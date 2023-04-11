@@ -134,8 +134,17 @@ app.get("/boasvindas", (req, res) => {
 
 const usuarios = require("./usuarios");
 
-app.get("/usuarios", (req, res) => {
-    res.json(usuarios);
+app.get("/usuarios/:index", (req, res) => {
+  const index = Number(req, params.index);
+  const usuarioEncontrado = usuarios[index];
+  
+  //Tratar a ausencia do usuario
+  if (usuarioEncontrado) {
+    res.json(usuarioEncontrado);
+} else {
+  //not found - 404
+  res.status(404).json({ message: "Usuário não encontrado" });
+}
 });
 
 // Params = mais restrito a url
