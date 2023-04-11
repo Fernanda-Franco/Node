@@ -24,3 +24,11 @@ servidor.listen(porta, host);
 /** Exercicio VI: Escreva na resposta do servidor informações sobre
  * o sistema usando o módulo os.
  */
+
+// SERVIDOR HTTP
+// - Rotas
+// - Codificação UTF-8
+// - Estrutura mais clean/mais minimalista
+// - Mais braçal
+
+// Express.js = Framework para backend

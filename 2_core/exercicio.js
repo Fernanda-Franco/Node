@@ -1,3 +1,8 @@
+/** EXERCÍCIO IV: Escreva um arquivo txt com as informações do seu sistema:
+ * Explore as funções do módulo os e gere um arquivo txt com informações
+ * da máquina.
+ */
+
 const os = require("os");
 const fs = require("fs");
 
