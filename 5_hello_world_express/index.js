@@ -134,7 +134,36 @@ app.get("/boasvindas", (req, res) => {
 
 const usuarios = require("./usuarios");
 
+
+// Exercício I: Crie uma rota "/usuarios/email", e filtre o usuário com o email fornecido via parâmetros de rota. Caso não encontre, responda com 404.
+// => /usuarios/email/gabriel.braga@soulcode.com
+// Params = mais restrito a url
+// /cpfs/5
+
+app.get("/usuarios/email/:email", (req, res) => {
+  const { email } = req.params; //parametro de rotas
+  const usuarioEncontrado = usuarios.find((el) => el.email === email);
+
+  if (usuarioEncontrado) {
+    res.json(usuarioEncontrado);
+  } else {
+    res.status(404).json({ message: "Usuário não encontrado"});
+  }
+});
+
+// Exercício II: Crie uma rota "/usuarios/novo", 
+//e por meio dos parâmetros de consulta colete 
+//nome e email para inserir no array de usuários.
+
+app.get("/usuario/novo", (req, res) => {
+  const { nome, email } = req.query;
+  const novoUsuario = { nome: nome, email: email};
+  usuarios.push(novoUsuario);
+  res.status(201).json({ message: "Usuario adicionado"});
+})
+
 app.get("/usuarios/:index", (req, res) => {
+  console.log(req.params.index)
   const index = Number(req, params.index);
   const usuarioEncontrado = usuarios[index];
   
@@ -146,9 +175,6 @@ app.get("/usuarios/:index", (req, res) => {
   res.status(404).json({ message: "Usuário não encontrado" });
 }
 });
-
-// Params = mais restrito a url
-// /cpfs/5
 
 // Query = mais flexível, suja mais a url
 // /cpfs?numero=5
